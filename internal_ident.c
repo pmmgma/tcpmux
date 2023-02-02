@@ -200,4 +200,5 @@ void install_intern_proto_identifiers(void)
 	install_echo_proto_identifier();
 	install_ssh_proto_identifier();
 	install_http_proto_identifier();
+	install_https_proto_identifier();
 }

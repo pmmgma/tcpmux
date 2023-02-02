@@ -27,6 +27,27 @@ void install_http_proto_identifier(void)
 	register_intern_proto_ident("http", 0, http_proto_identifier);
 }
 
+static int https_proto_identifier(const char *packet_data, int data_len,
+				 char *proto_name, int name_len)
+{
+	if (!is_https_protocol(packet_data, data_len))
+		return -1;
+
+	if (name_len <= strlen("https"))
+		return -1;
+
+	strcpy(proto_name, "https");
+
+	return 0;
+
+}
+
+void install_https_proto_identifier(void)
+{
+	register_intern_proto_ident("https", 0, https_proto_identifier);
+}
+
+
 /* sample code for echo protocol identification */
 
 static int echo_proto_identifier(const char *packet_data, int data_len,

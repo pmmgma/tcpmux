@@ -7,6 +7,7 @@
 #define SSH_TOKEN "SSH-2.0-"
 #define GET_TOKEN "GET"
 #define POST_TOKEN "POST"
+#define HTTPS_TOKEN 0x16
 
 static inline int is_ssh_protocol(const char *packet_data, int data_len)
 {
@@ -33,6 +34,15 @@ static inline int is_http_protocol(const char *packet_data, int data_len)
 {
 	if (!strncmp(packet_data, GET_TOKEN, strlen(GET_TOKEN)) ||
 	    !strncmp(packet_data, POST_TOKEN, strlen(POST_TOKEN))) {
+		return 1;
+	}
+
+	return 0;
+}
+
+static inline int is_https_protocol(const char *packet_data, int data_len)
+{
+	if (packet_data[0]==HTTPS_TOKEN) {
 		return 1;
 	}
 

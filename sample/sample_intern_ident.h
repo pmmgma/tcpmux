@@ -4,5 +4,6 @@
 void install_echo_proto_identifier(void);
 void install_ssh_proto_identifier(void);
 void install_http_proto_identifier(void);
+void install_https_proto_identifier(void);
 
 #endif
